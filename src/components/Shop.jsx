@@ -4,7 +4,13 @@ import { useSpring, animated } from "react-spring";
 import Item from "./Item";
 import { FaShoppingCart, FaShoppingBasket } from "react-icons/fa";
 
-const Shop = ({ items, itemQuantities, purchaseItem, cookies }) => {
+const Shop = ({
+    items,
+    itemQuantities,
+    purchaseItem,
+    cookies,
+    cookiesPerSecond,
+}) => {
     const [isOpen, setIsOpen] = useState(false);
     const buttonAnimation = useSpring({
         to: { opacity: 1, transform: "scale(1)" },
@@ -60,69 +66,77 @@ const Shop = ({ items, itemQuantities, purchaseItem, cookies }) => {
                             minWidth: "100%",
                             maxHeight: "300px",
                             overflowY: "scroll",
-                            padding: "8px",
+                            p: 2,
                             border: "1px solid #ccc",
                             borderRadius: "8px",
                             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
                             display: "flex",
                             flexDirection: "column",
-
                             alignItems: "center",
                         }}
                     >
-                        {Object.values(items).map((item) => (
-                            <Card
-                                key={item.id}
-                                mb={3}
-                                p={2}
-                                sx={{
-                                    borderRadius: "8px",
-                                    boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
-                                    width: "100%",
-                                }}
-                            >
-                                <Flex
-                                    justifyContent="space-between"
-                                    alignItems="center"
+                        {Object.values(items)
+                            .filter(
+                                (item) => cookiesPerSecond >= item.requiredCps
+                            )
+                            .map((item) => (
+                                <Card
+                                    key={item.id}
+                                    my={1}
+                                    p={2}
+                                    sx={{
+                                        borderRadius: "8px",
+                                        boxShadow:
+                                            "0 0 8px rgba(0, 0, 0, 0.125)",
+                                        width: "100%",
+                                    }}
                                 >
-                                    <Item
-                                        item={item}
-                                        quantity={itemQuantities[item.id]}
-                                    />
-                                    <Button
-                                        disabled={cookies < item.cost}
-                                        onClick={() => purchaseItem(item)}
-                                        sx={{
-                                            cursor: "pointer",
-                                            backgroundColor:
-                                                cookies < item.cost
-                                                    ? "#dc3545"
-                                                    : "#007BFF",
-                                            color: "white",
-                                            "&:hover": {
+                                    <Flex
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                    >
+                                        <Item
+                                            item={item}
+                                            quantity={itemQuantities[item.id]}
+                                        />
+                                        <Button
+                                            disabled={cookies < item.cost}
+                                            onClick={() => purchaseItem(item)}
+                                            sx={{
+                                                cursor: "pointer",
                                                 backgroundColor:
                                                     cookies < item.cost
                                                         ? "#dc3545"
-                                                        : "#0056b3",
-                                            },
-                                            padding: "8px 16px",
-                                            borderRadius: "4px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <animated.span style={buttonAnimation}>
-                                            {cookies < item.cost ? (
-                                                <FaShoppingBasket size={25} />
-                                            ) : (
-                                                <FaShoppingCart size={25} />
-                                            )}
-                                        </animated.span>
-                                    </Button>
-                                </Flex>
-                            </Card>
-                        ))}
+                                                        : "#007BFF",
+                                                color: "white",
+                                                "&:hover": {
+                                                    backgroundColor:
+                                                        cookies < item.cost
+                                                            ? "#dc3545"
+                                                            : "#0056b3",
+                                                },
+                                                padding: "8px 16px",
+                                                borderRadius: "4px",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                            }}
+                                        >
+                                            <animated.span
+                                                style={buttonAnimation}
+                                            >
+                                                {cookies < item.cost ? (
+                                                    <FaShoppingBasket
+                                                        size={25}
+                                                    />
+                                                ) : (
+                                                    <FaShoppingCart size={25} />
+                                                )}
+                                            </animated.span>
+                                        </Button>
+                                    </Flex>
+                                </Card>
+                            ))}
                     </Box>
                 )}
             </Box>

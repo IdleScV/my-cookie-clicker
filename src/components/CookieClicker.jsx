@@ -28,42 +28,108 @@ const CookieClicker = () => {
         return () => clearInterval(interval);
     }, [cookiesPerSecond, cookies, triggerFlair]);
 
-    const handlePurchaseOrClick = () => {
-        setTriggerFlair(true); // Activate the flair effect.
-        setTimeout(() => setTriggerFlair(false), 500); // Deactivate after 500ms.
+    const handlePurchase = (item) => {
+        if (cookies >= item.cost) {
+            setCookies(cookies - item.cost);
+            setCookiesPerSecond((cps) => cps + item.cookiesPerSecond);
+            setItemQuantities((prev) => ({
+                ...prev,
+                [item.id]: (prev[item.id] || 0) + 1,
+            }));
+        } else {
+            alert("Not enough cookies!");
+        }
     };
+
+    const handleClick = () => {
+        setCookies((currentCookies) => currentCookies + 1);
+        setTriggerFlair(true); // Trigger flair for cookie click
+    };
+
     const items = {
-        1: { id: 1, name: "Cursor", cost: 10, cookiesPerSecond: 1 },
-        2: { id: 2, name: "Grandma", cost: 100, cookiesPerSecond: 5 },
-        3: { id: 3, name: "Farm", cost: 500, cookiesPerSecond: 10 },
-        4: { id: 4, name: "Mine", cost: 2000, cookiesPerSecond: 40 },
-        5: { id: 5, name: "Factory", cost: 10000, cookiesPerSecond: 100 },
-        6: { id: 6, name: "Bank", cost: 40000, cookiesPerSecond: 400 },
-        7: { id: 7, name: "Temple", cost: 200000, cookiesPerSecond: 2000 },
+        1: {
+            id: 1,
+            name: "Cursor",
+            cost: 10,
+            cookiesPerSecond: 1,
+            requiredCps: 0,
+        },
+        2: {
+            id: 2,
+            name: "Grandma",
+            cost: 100,
+            cookiesPerSecond: 5,
+            requiredCps: 10,
+        },
+        3: {
+            id: 3,
+            name: "Farm",
+            cost: 500,
+            cookiesPerSecond: 10,
+            requiredCps: 50,
+        },
+        4: {
+            id: 4,
+            name: "Mine",
+            cost: 2000,
+            cookiesPerSecond: 40,
+            requiredCps: 100,
+        },
+        5: {
+            id: 5,
+            name: "Factory",
+            cost: 10000,
+            cookiesPerSecond: 100,
+            requiredCps: 500,
+        },
+        6: {
+            id: 6,
+            name: "Bank",
+            cost: 40000,
+            cookiesPerSecond: 400,
+            requiredCps: 2000,
+        },
+        7: {
+            id: 7,
+            name: "Temple",
+            cost: 200000,
+            cookiesPerSecond: 2000,
+            requiredCps: 10000,
+        },
         8: {
             id: 8,
             name: "Wizard Tower",
             cost: 3300000,
             cookiesPerSecond: 7000,
+            requiredCps: 50000,
         },
-        9: { id: 9, name: "Shipment", cost: 51000000, cookiesPerSecond: 29000 },
+        9: {
+            id: 9,
+            name: "Shipment",
+            cost: 51000000,
+            cookiesPerSecond: 29000,
+            requiredCps: 200000,
+        },
         10: {
             id: 10,
             name: "Alchemy Lab",
             cost: 750000000,
             cookiesPerSecond: 100000,
+            requiredCps: 1000000,
         },
         11: {
             id: 11,
             name: "Portal",
             cost: 10000000000,
             cookiesPerSecond: 1666666,
+            requiredCps: 5000000,
         },
         12: {
             id: 12,
             name: "Time Machine",
             cost: 140000000000,
             cookiesPerSecond: 9876543,
+            requiredCps: 10000000,
         },
     };
 
@@ -105,10 +171,7 @@ const CookieClicker = () => {
                 },
             }}
         >
-            <CookieDisplay
-                triggerFlair={triggerFlair}
-                onClick={handlePurchaseOrClick}
-            />
+            <CookieDisplay triggerFlair={triggerFlair} onClick={handleClick} />
 
             <Text
                 sx={{
@@ -125,20 +188,8 @@ const CookieClicker = () => {
                 items={items}
                 itemQuantities={itemQuantities}
                 cookies={cookies}
-                purchaseItem={(item) => {
-                    if (cookies >= item.cost) {
-                        setCookies(cookies - item.cost);
-                        setCookiesPerSecond(
-                            (cps) => cps + item.cookiesPerSecond
-                        );
-                        setItemQuantities((prev) => ({
-                            ...prev,
-                            [item.id]: (prev[item.id] || 0) + 1,
-                        }));
-                    } else {
-                        alert("Not enough cookies!");
-                    }
-                }}
+                cookiesPerSecond={cookiesPerSecond}
+                purchaseItem={handlePurchase}
             />
         </Box>
     );
