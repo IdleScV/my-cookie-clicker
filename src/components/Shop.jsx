@@ -52,7 +52,7 @@ const Shop = ({
                     alignItems: "center",
                     textAlign: "center",
                     py: 2,
-                    maxHeight: "300px",
+                    maxHeight: "250px",
                     display: "flex",
                     justifyContent: "center",
                     mb: 2,
