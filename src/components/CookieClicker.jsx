@@ -6,7 +6,7 @@ import Shop from "./Shop";
 import { useSpring } from "react-spring";
 
 const CookieClicker = () => {
-    const [cookies, setCookies] = useState(100000);
+    const [cookies, setCookies] = useState(0);
     const [cookiesPerSecond, setCookiesPerSecond] = useState(0);
     const [itemQuantities, setItemQuantities] = useState({ 1: 0, 2: 0, 3: 0 });
     const [triggerFlair, setTriggerFlair] = useState(false);
