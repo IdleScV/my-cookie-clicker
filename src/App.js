@@ -11,6 +11,7 @@ const App = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                maxHeight: "95vh",
             }}
         >
             <CookieClicker />
