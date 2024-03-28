@@ -118,7 +118,9 @@ const CookieClicker = () => {
             >
                 Cookies:
             </Text>
+
             <CookieCounter props={props} />
+
             <Shop
                 items={items}
                 itemQuantities={itemQuantities}
