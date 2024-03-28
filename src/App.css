@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+body {
+    /* Ensure the background covers the entire viewport */
+    background: url("./static/background.png") no-repeat center center fixed;
+
+    /* Scale the background to cover the entire container */
+    background-size: cover;
+
+    /* Set a background color that matches the overall tone of the image, as a fallback */
+    background-color: #0189df; /* Replace with the dominant color of your background image */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* For WebKit browsers */
+::-webkit-scrollbar {
+    width: 6px; /* width of the entire scrollbar */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar-track {
+    background: #f0f0f0; /* color of the tracking area */
+    border: 1px solid #c0c0c0; /* border around the tracking area */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* color of the scroll thumb */
+    border: 2px solid #555; /* creates the pixelated effect */
+    border-radius: 0px; /* square corners */
 }
 
-.App-link {
-  color: #61dafb;
+/* For other browsers that support the scrollbar-color and scrollbar-width properties */
+* {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: #888 #f0f0f0; /* thumb and track color */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Optionally, for a more pixel-perfect approach, you might want to reset some styles */
+body {
+    margin: 0;
+    font-family: "Press Start 2P", cursive; /* Example pixelated font */
+    background-color: #f0f0f0;
 }
+
+/* Apply your main styles here */

@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import React from "react";
+import CookieClicker from "./components/CookieClicker"; // Adjust the import path according to your file structure
+import { Box } from "rebass";
+import "./styles/fonts.css";
+import "./styles/animations.css";
+import "./App.css";
+const App = () => {
+    return (
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+            <CookieClicker />
+        </Box>
+    );
+};
 
 export default App;

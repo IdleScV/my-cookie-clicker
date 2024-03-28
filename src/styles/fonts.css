@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "Silkscreen";
+    src: url("./Silkscreen/slkscr.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Silkscreen";
+    src: url("./Silkscreen/slkscrb.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Silkscreen";
+    src: url("./Silkscreen/slkscre.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Silkscreen";
+    src: url("./Silkscreen/slkscreb.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* fonts.css or another global stylesheet */
+
+button,
+.rebass-button {
+    font-family: "Silkscreen", Arial, sans-serif;
+}
