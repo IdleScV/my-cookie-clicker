@@ -38,12 +38,16 @@ const Item = ({ item, quantity }) => {
             onMouseLeave={() => setIsHovering(false)}
             sx={{
                 cursor: "pointer",
-                fontSize: 2,
+                fontSize: 4,
                 fontFamily: "Silkscreen, Arial, sans-serif",
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                mr: 4,
             }}
         >
-            <Text fontWeight="bold">{item.name}</Text>
-            <Text as="span" p={1}>
+            <Text textAlign={"left"}>{item.name}</Text>
+            <Text as="span" fontSize={4}>
                 x {quantity || 0}
             </Text>
             {isHovering &&
