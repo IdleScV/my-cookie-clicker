@@ -7,6 +7,7 @@ const Item = ({ item, quantity }) => {
     const [isHovering, setIsHovering] = useState(false);
     const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
     const itemRef = useRef(null); // Ref for the item element
+    const totalCps = item.cookiesPerSecond * (quantity || 0);
 
     const updateTooltipPosition = () => {
         if (itemRef.current) {
@@ -70,6 +71,9 @@ const Item = ({ item, quantity }) => {
                             fontFamily: "Silkscreen, Arial, sans-serif",
                         }}
                     >
+                        <Text>
+                            Total CPS from this item: {formatNumber(totalCps)}
+                        </Text>
                         <Text>Cookies per second: {item.cookiesPerSecond}</Text>
                         <Text>Cost: {formatNumber(item.cost)} cookies</Text>
                     </Box>,
