@@ -10,7 +10,7 @@ const CookieDisplay = ({ setTriggerFlairExternally, flair, onClick }) => {
             src={cookieImage}
             alt="Cookie"
             sx={{
-                m: 4,
+                m: 2,
                 cursor: "pointer",
                 animation: flair ? "flair 0.3s linear" : "none", // Controlled by flair prop
                 width: 300,

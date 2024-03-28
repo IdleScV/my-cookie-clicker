@@ -25,7 +25,7 @@ const Shop = ({
         <Flex
             flexDirection="column"
             alignItems="center"
-            mt={4}
+            mt={2}
             fontFamily="Silkscreen"
         >
             <Button
@@ -51,23 +51,21 @@ const Shop = ({
                     alignContent: "center",
                     alignItems: "center",
                     textAlign: "center",
-                    py: 2,
-                    maxHeight: "250px",
+                    py: 1,
+                    maxHeight: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    mb: 2,
                 }}
             >
                 {isOpen && (
                     <Box
                         style={drawerAnimation}
                         sx={{
-                            border: "solid green 4px",
                             minWidth: "100%",
                             maxHeight: "300px",
                             overflowY: "scroll",
                             p: 2,
-                            border: "1px solid #ccc",
+
                             borderRadius: "8px",
                             boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
                             display: "flex",

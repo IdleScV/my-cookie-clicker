@@ -7,7 +7,7 @@ import { useSpring } from "react-spring";
 
 const CookieClicker = () => {
     const [cookies, setCookies] = useState(0);
-    const [cookiesPerSecond, setCookiesPerSecond] = useState(0);
+    const [cookiesPerSecond, setCookiesPerSecond] = useState(2000);
     const [itemQuantities, setItemQuantities] = useState({ 1: 0, 2: 0, 3: 0 });
     const [triggerFlair, setTriggerFlair] = useState(false);
     const props = useSpring({ number: cookies, from: { number: 0 } });
@@ -136,8 +136,6 @@ const CookieClicker = () => {
     return (
         <Box
             sx={{
-                mt: 4,
-
                 textAlign: "center",
                 minWidth: "450px",
                 justifyContent: "center",
@@ -148,27 +146,6 @@ const CookieClicker = () => {
               inset 0px 0px 10px #8B4513, // Simulating depth
               0px 0px 15px #8B4513, // Outer glow for a cozy effect
               inset 0px 0px 5px #A52A2A`, // Adding some inner texture
-                position: "relative",
-                "&:before": {
-                    // Using pseudo-elements for additional texture
-                    content: '""',
-                    position: "absolute",
-                    top: -2, // Slightly larger than the border to overlap
-                    left: -2,
-                    right: -2,
-                    bottom: -2,
-                    zIndex: -1,
-                    background: `linear-gradient(
-                  135deg, 
-                  rgba(139,69,19, 0.5) 25%, 
-                  rgba(160,82,45, 0.5) 25%, 
-                  rgba(160,82,45, 0.5) 50%, 
-                  rgba(139,69,19, 0.5) 50%, 
-                  rgba(139,69,19, 0.5) 75%, 
-                  rgba(160,82,45, 0.5) 75%
-                )`,
-                    backgroundSize: "20px 20px", // Adjust the size to match your preference
-                },
             }}
         >
             <CookieDisplay triggerFlair={triggerFlair} onClick={handleClick} />

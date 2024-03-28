@@ -1,5 +1,5 @@
 import React from "react";
-import CookieClicker from "./components/CookieClicker"; // Adjust the import path according to your file structure
+import CookieClicker from "./components/CookieClicker";
 import { Box } from "rebass";
 import "./styles/fonts.css";
 import "./styles/animations.css";
@@ -9,9 +9,11 @@ const App = () => {
         <Box
             sx={{
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                maxHeight: "95vh",
+                // remove padding if screen is too small
+                pt: [0, 2, 4],
             }}
         >
             <CookieClicker />
