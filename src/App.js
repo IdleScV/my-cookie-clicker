@@ -1,6 +1,7 @@
 import React from "react";
 import CookieClicker from "./components/CookieClicker";
 import { Box } from "rebass";
+import { Analytics } from "@vercel/analytics/react";
 import "./styles/fonts.css";
 import "./styles/animations.css";
 import "./App.css";
@@ -17,6 +18,7 @@ const App = () => {
             }}
         >
             <CookieClicker />
+            <Analytics />
         </Box>
     );
 };
